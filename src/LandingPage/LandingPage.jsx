@@ -1,7 +1,8 @@
-import React from 'react'
-import { Footer } from '../Footer/Footer'
-import hamsa from '../assets/hamsa.svg'
-import './LandingPage.css'
+import React from 'react';
+import { Footer } from '../Footer/Footer';
+import hamsa from '../assets/hamsa.svg';
+import './LandingPage.css';
+import { Link } from 'react-router-dom';
 
 export const LandingPage = () => {
     return (
@@ -9,7 +10,9 @@ export const LandingPage = () => {
             <img className="hamsa" src={hamsa} alt="ominous hamsa" />
             <h3>Learn to speak like a witch. Nothing is free but it won't cost you money.</h3>
             <button className="medium-button" type="button">
-                Pay the Price
+                <Link to="/user-home">
+                    Pay the Price
+                </Link>
             </button>
             <Footer />
         </>
