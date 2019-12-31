@@ -8,6 +8,9 @@ export const LandingPage = () => {
         <>
             <img className="hamsa" src={hamsa} alt="ominous hamsa" />
             <h3>Learn to speak like a witch. Nothing is free but it won't cost you money.</h3>
+            <button className="medium-button" type="button">
+                Pay the Price
+            </button>
             <Footer />
         </>
     )
