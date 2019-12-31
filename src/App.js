@@ -1,22 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Disclaimer I don't know Latin at all
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://www.duolingo.com/course/la/en/Learn-Latin"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Here's Duolingo's Latin go learn it there for real
         </a>
       </header>
     </div>
