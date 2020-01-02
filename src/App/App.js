@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { LandingPage } from '../LandingPage/LandingPage';
 import { UserHome } from '../UserHome/UserHome'
+import { Lesson } from '../Lesson/Lesson'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
@@ -12,6 +13,9 @@ const App = () => {
           <Switch>
             <Route path="/user-home">
               <UserHome />
+            </Route>
+            <Route path="/lesson">
+              <Lesson />
             </Route>
             <Route path="/">
               <LandingPage />
