@@ -1,8 +1,5 @@
-import React from 'react';
+import React from 'react'
 
-export const Lesson = () => {
-    return (<>
-    <div>here's a lesson</div>
-        
-    </>)
-}
+export const Lesson = () => (
+    <div>here's a lesson</div>      
+)

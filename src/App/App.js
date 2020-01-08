@@ -1,30 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { LandingPage } from '../LandingPage/LandingPage';
-import { UserHome } from '../UserHome/UserHome'
-import { Lesson } from '../Lesson/Lesson'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { UserHome } from '../UserHome/UserHome';
+import { Lesson } from '../Lesson/Lesson';
+import { Switch, Route } from 'react-router-dom';
 
-const App = () => {
+export const App = () => {
+  useEffect(() => {
+
+  });
+  
   return (
     <div className="App">
       <header className="App-header">
-        <Router>
-          <Switch>
-            <Route path="/user-home">
-              <UserHome />
-            </Route>
-            <Route path="/lesson">
-              <Lesson />
-            </Route>
-            <Route path="/">
-              <LandingPage />
-            </Route>
-          </Switch>
-        </Router>
+        <Switch>
+          <Route path="/lesson">
+            <Lesson />
+          </Route>
+          <Route path="/user-home">
+            <UserHome />
+          </Route>
+          <Route path="/">
+            <LandingPage />
+          </Route>
+        </Switch>
       </header>
     </div>
   );
-}
+};
 
 export default App;

@@ -7,3 +7,9 @@
     height: 80px;
     width: 80px;
 }
+
+.router-link {
+    color: #fff;
+    text-decoration: none;
+
+}

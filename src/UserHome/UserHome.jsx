@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Header } from '../Header/Header'
 import './UserHome.css';
 
-export const UserHome = () => {
-    return (
+export const UserHome = () => (
     <main>
+        <Header />
         <section>
             <div className="lesson">
-                <Link to="/lesson">First Lesson</Link>
+                <Link to="/lesson" className="router-link">First Lesson</Link>
             </div>
         </section>
     </main>
     )
-}
