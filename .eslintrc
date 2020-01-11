@@ -33,7 +33,13 @@
       "no-duplicate-imports": "error",
       "id-length": "error",
       "id-blacklist": ["error", "err", "e", "cb", "callback", "payload", "obj", "arr"],
-      "max-depth": ["warn", 4]
+      "max-depth": ["warn", 4],
+      "sort-imports": ["error", {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+    }]
     },
     "globals": {
       "expect": true
