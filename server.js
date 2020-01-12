@@ -3,12 +3,18 @@ const app = express();
 const bodyParser = require('body-parser');
 const {Translate} = require("@google-cloud/translate").v2;
 
+
+const environment = process.env.NODE_ENV || 'development';
+
 // TODO: break out into seperate files
 
 // Creates a client
-const translate = new Translate();
-
-const environment = process.env.NODE_ENV || 'development';
+let translate;
+if (environment === 'development' || environment === 'test') {
+  translate =  'This is gonna blow up';
+} else {
+  translate = new Translate();
+}
 
 app.set('port', process.env.PORT || 8081);
 app.use(bodyParser.json());
@@ -35,17 +41,21 @@ app.use((req, res, next) => {
     console.log(`Server running on port ${app.get('port')}`)
   });
 
-  app.get('/latin/:text', (req, resp) => {
+  app.get('/latin/:text', async (req, resp) => {
     async function translateText() {
       let translations = await translate.translate(req.params.text, "la");
-      return translations;
+      return translations
+    }
+    try {
+      const translation = await translateText()
+        resp.status(200).json(translation)
+    } catch {
+        console.log('api not available, sending fallback translation')
+        resp.status(200).json([ 'Et hoc non est verum', { data: { translations: [Array] } } ])
+      }
     }
  
-    translateText().then((translation) => {
-      resp.status(200).json(translation)
-    }).catch(error => {
-      resp.status(500).json({error})
-    })
-  })
+    
+  )
 
   module.exports = app;
