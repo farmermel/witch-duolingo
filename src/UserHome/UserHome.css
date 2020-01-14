@@ -1,9 +1,32 @@
+.Userhome {
+    display: grid;
+    grid-template-rows: [header] 100px [main] 1fr;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.Userhome header {
+    grid-row: header;
+    background-color: #E8E8FF;
+    box-shadow: 0px 1px 3px #664D6B;
+}
+
+.Userhome main {
+    grid-row: main;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .lesson {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: darkolivegreen;
     border-radius: 100%;
+    padding: 30px;
+    margin: 20px;
     height: 80px;
     width: 80px;
 }

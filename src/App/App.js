@@ -7,19 +7,17 @@ import { UserHome } from '../UserHome/UserHome';
 
 export const App = () => (
   <div className="App">
-    <header className="App-header">
-      <Switch>
-        <Route path="/lesson/:id">
-          <Lesson />
-        </Route>
-        <Route path="/user-home">
-          <UserHome />
-        </Route>
-        <Route path="/">
-          <LandingPage />
-        </Route>
-      </Switch>
-    </header>
+    <Switch>
+      <Route path="/lesson/:id">
+        <Lesson />
+      </Route>
+      <Route path="/user-home">
+        <UserHome />
+      </Route>
+      <Route path="/">
+        <LandingPage />
+      </Route>
+    </Switch>
   </div>
 );
 

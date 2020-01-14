@@ -1,7 +1,8 @@
 import React from 'react'
+import './Header.css'
 
 export const Header = () => ( 
-<header>
-        <div>header goes here</div>
+    <header className="Header">
+        <h3>header goes here</h3>
     </header>
 )
