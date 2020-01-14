@@ -43,8 +43,11 @@ app.use((req, res, next) => {
 
   app.get('/latin/:text', async (req, resp) => {
     async function translateText() {
-      let translations = await translate.translate(req.params.text, "la");
-      return translations
+      let [translations] = await translate.translate(text, "la");
+      translations = Array.isArray(translations) ? translations : [translations];
+      translations.forEach((translation, i) => {
+        console.log(`${text[i]} => (${target}) ${translation}`);
+      });
     }
     try {
       const translation = await translateText()
