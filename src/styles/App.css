@@ -1,0 +1,25 @@
+.App {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #F4F4FF;
+  color: #1C121E;
+  min-height: 100vh; }
+
+.App-link {
+  color: #BCE784; }
+
+.medium-button {
+  background-color: #BCE784;
+  border: #BCE784;
+  box-shadow: 0px 4px 0px #5A930E;
+  border-radius: 10px;
+  height: 30px;
+  width: 200px; }
+
+.medium-button:hover {
+  background-color: #5A930E;
+  box-shadow: 0px 4px 0px #402944; }
