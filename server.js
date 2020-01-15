@@ -8,6 +8,7 @@ const environment = process.env.NODE_ENV || 'development';
 
 // TODO: break out into seperate files
 
+console.log('environment', environment)
 // Creates a client
 let translate;
 if (environment === 'development' || environment === 'test') {
@@ -42,23 +43,20 @@ app.use((req, res, next) => {
   });
 
   app.get('/latin/:text', async (req, resp) => {
-    async function translateText() {
-      let [translations] = await translate.translate(text, "la");
-      translations = Array.isArray(translations) ? translations : [translations];
-      translations.forEach((translation, i) => {
-        console.log(`${text[i]} => (${target}) ${translation}`);
-      });
-    }
     try {
-      const translation = await translateText()
-        resp.status(200).json(translation)
-    } catch {
-        console.log('api not available, sending fallback translation')
-        resp.status(200).json([ 'Et hoc non est verum', { data: { translations: [Array] } } ])
+      const translation = await translateText(req.params.text)
+      resp.status(200).json(translation)
+    } catch (err) {
+        console.log("api not available, falling back to fake answers")
+        resp.status(200).json(['["Pulchra tibi in occursum tibi", "Vale", "Salve", "Ignosce", "nomen meum"]'])
       }
     }
- 
-    
   )
+
+  async function translateText(text) {
+    let [translations] = await translate.translate(text, "la");
+    translations = Array.isArray(translations) ? translations : [translations];
+    return translations;
+  }
 
   module.exports = app;
