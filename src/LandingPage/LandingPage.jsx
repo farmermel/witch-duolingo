@@ -1,7 +1,7 @@
 import React from 'react';
 import { Footer } from '../Footer/Footer';
 import hamsa from '../assets/hamsa.svg';
-import './LandingPage.css';
+import '../styles/LandingPage.css';
 import { Link } from 'react-router-dom';
 
 export const LandingPage = () => {

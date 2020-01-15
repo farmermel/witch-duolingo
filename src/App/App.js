@@ -1,4 +1,4 @@
-import './App.css';
+import '../styles/App.css';
 import { Route, Switch } from 'react-router-dom';
 import { LandingPage } from '../LandingPage/LandingPage';
 import { Lesson } from '../Lesson/Lesson';
