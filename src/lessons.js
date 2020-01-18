@@ -13,12 +13,12 @@ export default [
     ],
     [
         "Crystal ball",
-        "Cat's skull",
+        "Cat skull",
         "Frog legs",
         "Tarot cards",
         "Full moon",
         "Sacred water",
-        "The old ones",
+        "Old ones",
         "Scented candle",
         "Fire",
         "Earth",
@@ -27,7 +27,7 @@ export default [
     [
         "The parents are sad",
         "I am happy",
-        "They are very peaceful",
+        "They are peaceful",
         "The dog seems sick",
         "How are you?",
         "The cat is angry",

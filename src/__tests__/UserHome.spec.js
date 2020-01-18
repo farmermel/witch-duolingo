@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
-import { renderWithRouter } from '../test-utils';
+import { renderWithRouter } from './test-utils';
 import { UserHome } from '../UserHome/UserHome';
 
 test('renders main page', () => {

@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, screen } from '@testing-library/react';
 import { App } from '../App/App.js';
 import React from 'react';
-import { renderWithRouter } from '../test-utils.js';
+import { renderWithRouter } from './test-utils.js';
 
 test('runs tests', () => {
   renderWithRouter(<App />);
