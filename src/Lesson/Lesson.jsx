@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { compareTwoStrings, fetchData, randomSubarray } from '../helpers';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { Card } from '../Card/Card';
 import lessons from '../lessons.js';
 import '../styles/Lesson.css';
 
@@ -36,11 +37,10 @@ export const Lesson = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (compareTwoStrings([translation[currentCard], userAnswer])) {
-      setButtonState({...buttonState, className: "correct"});
-    } else {
-      setButtonState({...buttonState, className: "incorrect"});
-    }
+    compareTwoStrings([translation[currentCard], userAnswer])
+        ? setButtonState({...buttonState, className: "correct"}) 
+        : setButtonState({...buttonState, className: "incorrect"})
+
     waitAndResetCard();
   }
 
@@ -60,24 +60,25 @@ export const Lesson = () => {
     }
   }
 
+  const containerInsides = () => {
+    return (
+      <textarea placeholder="Type the latin translation"
+                value={userAnswer}
+                onChange={handleChange}
+                onKeyDown={handleOnKeyDown}>
+      </textarea> 
+    )
+  }
+
    return (
      <main>
-      <h4>Translate this sentence</h4>
-      <article className="lesson-card">
-          <div>{text[currentCard]}</div>
-          <form onSubmit={handleSubmit}>
-            <textarea placeholder="Type the latin translation"
-                      value={userAnswer}
-                      onChange={handleChange}
-                      onKeyDown={handleOnKeyDown}>
-            </textarea> 
-            <button className={`medium-button ${buttonState.className}`}
-                    type="submit"
-                    disabled={buttonState.disabled}>
-              Check
-            </button>
-          </form>
-      </article>
+      <Link tag="button" to="/user-home"><button className="back-home">Home</button></Link>
+      <Card prompt="Translate this sentence"
+            children={containerInsides()}
+            currentText={text[currentCard]}
+            handleSubmit={handleSubmit}
+            buttonState={buttonState}
+            />
       <div>hint the answer is {translation[currentCard]}</div>
      </main>
   )
