@@ -1,7 +1,7 @@
 import { createMemoryHistory } from 'history';
-import {fireEvent, render, screen} from '@testing-library/react';
-import { Router } from 'react-router-dom';
 import React from 'react';
+import { render } from '@testing-library/react';
+import { Router } from 'react-router-dom';
 
 export function renderWithRouter(
   ui,
@@ -10,6 +10,7 @@ export function renderWithRouter(
     history = createMemoryHistory({ initialEntries: [route] })
   } = {}
 ) {
+  // eslint-disable-next-line
   const Wrapper = ({ children }) => (
     <Router history={history}>{children}</Router>
   );

@@ -9,7 +9,12 @@ function makeMoreLessons() {
     while (i < 6) {
         lessons = [...lessons, 
         <div className="lesson">
-            <Link to={`/lesson/${i}`} className="router-link">Lesson {i}</Link>
+            <Link to={`/lesson/${i}`} 
+                  className="router-link" 
+                  // TODO: when something is substantively different about lessons make key not an index
+                  key={`lesson{$i}`}>
+                      Lesson {i}
+            </Link>
         </div>
             ]
         i++;
