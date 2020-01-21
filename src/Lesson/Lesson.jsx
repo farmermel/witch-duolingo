@@ -4,13 +4,13 @@ import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Card } from '../Card/Card';
 import lessons from '../lessons.js';
+import { ModeButton } from '../ModeButton/ModeButton';
 
 export const Lesson = () => {
   const [translation, setTranslation] = useState([]);
   const [text, setText] = useState([]);
   const [currentCard, setCurrentCard] = useState(0);
   
-
   const { id } = useParams();
 
   useEffect(() => {
@@ -22,8 +22,6 @@ export const Lesson = () => {
     fetchData(fullURL, setTranslation);
   }, []);
 
-  
-
   return (
     <main>
       <Link tag="button" to="/user-home">
@@ -31,6 +29,7 @@ export const Lesson = () => {
           Home
         </button>
       </Link>
+      <ModeButton />
       <Card prompt="Translate this sentence "
         type="textarea"
         currentText={text[currentCard]}

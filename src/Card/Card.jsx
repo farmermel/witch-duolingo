@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { compareTwoStrings } from '../helpers';
+import { ThemeContextConsumer } from '../themeContext';
 
 export const Card = ({
   prompt,
@@ -51,34 +52,39 @@ export const Card = ({
   };
 
 
-  return (<>
-    <h4>{prompt}</h4>
-    <article className="lesson-card">
-      <div>{currentText}</div>
-      <form onSubmit={handleSubmit}>
-        {
-          type === "textarea" && 
-                  <textarea placeholder="Type the latin translation"
-                    value={userAnswer}
-                    onChange={handleChange}
-                    onKeyDown={handleOnKeyDown}>
-                  </textarea>
-              ||
-                type === "input" && 
-                  <input type="text"
-                    placeholder="Type the latin translation"
-                    value={userAnswer}
-                    onChange={handleChange}
-                    onKeyDown={handleOnKeyDown}>
-                  </input>
-        }
-        <button className={`medium-button ${buttonState.className}`}
-          type="submit"
-          disabled={buttonState.disabled}>
-                Check
-        </button>
-      </form>
-    </article>
-  </>
+  return (
+    <ThemeContextConsumer>
+      { value => 
+        <>
+          <h4>{prompt}</h4>
+          <article className={`${value.theme} lesson-card`}>
+            <div>{currentText}</div>
+            <form onSubmit={handleSubmit}>
+              {
+                type === "textarea" && 
+                        <textarea placeholder="Type the latin translation"
+                          value={userAnswer}
+                          onChange={handleChange}
+                          onKeyDown={handleOnKeyDown}>
+                        </textarea>
+                    ||
+                      type === "input" && 
+                        <input type="text"
+                          placeholder="Type the latin translation"
+                          value={userAnswer}
+                          onChange={handleChange}
+                          onKeyDown={handleOnKeyDown}>
+                        </input>
+              }
+              <button className={`${value} medium-button ${buttonState.className}`}
+                type="submit"
+                disabled={buttonState.disabled}>
+                      Check
+              </button>
+            </form>
+          </article>
+        </>
+      }
+    </ThemeContextConsumer>
   );
 };

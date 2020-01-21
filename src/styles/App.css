@@ -5,30 +5,120 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #F4F4FF;
-  color: #1C121E;
   min-height: 100vh; }
-
-.App-link {
-  color: #BCE784; }
 
 button {
   cursor: pointer; }
 
 .medium-button {
-  background-color: #BCE784;
-  border: #BCE784;
-  box-shadow: 0px 4px 0px #5A930E;
   border-radius: 10px;
   height: 30px;
   width: 200px; }
-
-.medium-button:hover {
-  background-color: #5A930E;
-  box-shadow: 0px 4px 0px #402944; }
 
 main {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column; }
+
+.mode-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 100%;
+  background-size: cover;
+  height: 40px;
+  width: 40px; }
+
+.dark.App {
+  background-color: #001514;
+  color: #E1EFEB; }
+
+.dark.App-link {
+  color: #B8D8D0; }
+
+.dark.back-home {
+  background-color: #BCE784;
+  border: #BCE784;
+  box-shadow: 0px 4px 0px #5A930E; }
+
+.dark .disabled {
+  background-color: #D0D0E5;
+  color: #000;
+  border: #534656;
+  box-shadow: 0px 4px 0px #534656; }
+
+.dark .incorrect {
+  background-color: #9E2D3A;
+  border: #72111C;
+  box-shadow: 0px 4px 0px #72111C; }
+
+.dark .incorrect:hover {
+  background-color: #72111C; }
+
+.dark.lesson-card {
+  background-color: #243535; }
+
+.dark .medium-button:hover {
+  background-color: #5A930E;
+  box-shadow: 0px 4px 0px #402944; }
+
+.dark .medium-button {
+  background-color: #BCE784;
+  border: #BCE784;
+  box-shadow: 0px 4px 0px #5A930E; }
+
+.dark .mode-button {
+  background-color: #d0b132;
+  background-image: url("../assets/sun.svg"); }
+
+.dark textarea, .dark input {
+  border: 2px solid #E8E8FF;
+  background-color: #3D4747;
+  color: #E8E8FF; }
+
+.light.App {
+  background-color: #F4F4FF;
+  color: #1C121E; }
+
+.light.App-link {
+  color: #BCE784; }
+
+.light.back-home {
+  background-color: #BCE784;
+  border: #BCE784;
+  box-shadow: 0px 4px 0px #5A930E; }
+
+.light .disabled {
+  background-color: #D0D0E5;
+  color: #000;
+  border: #534656;
+  box-shadow: 0px 4px 0px #534656; }
+
+.light .incorrect {
+  background-color: #9E2D3A;
+  border: #72111C;
+  box-shadow: 0px 4px 0px #72111C; }
+
+.light .incorrect:hover {
+  background-color: #72111C; }
+
+.light.lesson-card {
+  background-color: #fff; }
+
+.light.medium-button:hover {
+  background-color: #5A930E;
+  box-shadow: 0px 4px 0px #402944; }
+
+.light.medium-button {
+  background-color: #BCE784;
+  border: #BCE784;
+  box-shadow: 0px 4px 0px #5A930E; }
+
+.light.mode-button {
+  background-color: #001514;
+  background-image: url("../assets/moon.svg"); }
+
+.light textarea {
+  border: 2px solid #E8E8FF;
+  background-color: #F4F4F7; }
