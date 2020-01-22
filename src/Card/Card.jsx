@@ -52,9 +52,17 @@ export const Card = ({
   };
 
 
+
   return (
     <ThemeContextConsumer>
       { value => 
+        type === "final" &&
+        <>
+        <h3>YOU DID IT PROUD OF YOU</h3>
+        <article className={`${value.theme} final-card`}>
+        </article>
+        </>
+        ||
         <>
           <h4>{prompt}</h4>
           <article className={`${value.theme} lesson-card`}>
@@ -83,6 +91,7 @@ export const Card = ({
               </button>
             </form>
           </article>
+          <div>hint the answer is {translation}</div>
         </>
       }
     </ThemeContextConsumer>
