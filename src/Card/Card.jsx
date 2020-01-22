@@ -51,38 +51,49 @@ export const Card = ({
     }
   };
 
+  const renderFinal = theme  => (
+    <>
+      <h3>YOU DID IT PROUD OF YOU</h3>
+      <article className={`${theme} final-card`}>
+      </article>
+    </>
+  )
 
+  const renderQuizCards = (type) => {
+    if (type === "textarea") {
+      return (
+        <textarea placeholder="Type the latin translation"
+          value={userAnswer}
+          onChange={handleChange}
+          onKeyDown={handleOnKeyDown}>
+        </textarea>
+      )
+    } else if (type === "input") {
+      return (
+        <input type="text"
+          placeholder="Type the latin translation"
+          value={userAnswer}
+          onChange={handleChange}
+          onKeyDown={handleOnKeyDown}>
+        </input>
+      )
+    }
+  }
 
   return (
     <ThemeContextConsumer>
       { value => 
-        type === "final" &&
-        <>
-        <h3>YOU DID IT PROUD OF YOU</h3>
-        <article className={`${value.theme} final-card`}>
-        </article>
-        </>
-        ||
+        type === "final" 
+        ? 
+        renderFinal(value.theme)
+        :
         <>
           <h4>{prompt}</h4>
           <article className={`${value.theme} lesson-card`}>
             <div>{currentText}</div>
             <form onSubmit={handleSubmit}>
               {
-                type === "textarea" && 
-                        <textarea placeholder="Type the latin translation"
-                          value={userAnswer}
-                          onChange={handleChange}
-                          onKeyDown={handleOnKeyDown}>
-                        </textarea>
-                    ||
-                      type === "input" && 
-                        <input type="text"
-                          placeholder="Type the latin translation"
-                          value={userAnswer}
-                          onChange={handleChange}
-                          onKeyDown={handleOnKeyDown}>
-                        </input>
+                renderQuizCards(type)
               }
               <button className={`${value} medium-button ${buttonState.className}`}
                 type="submit"
