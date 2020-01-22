@@ -1,5 +1,5 @@
 import '../styles/Lesson.css';
-import { fetchData, randomSubarray } from '../helpers';
+import { fetchData } from '../helpers';
 import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Card } from '../Card/Card';
@@ -7,20 +7,33 @@ import lessons from '../lessons.js';
 import { ModeButton } from '../ModeButton/ModeButton';
 
 export const Lesson = () => {
-  const [translation, setTranslation] = useState([]);
+  const [allTranslations, setAllTranslations] = useState([]);
   const [text, setText] = useState([]);
   const [currentCard, setCurrentCard] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   
   const { id } = useParams();
+  const lessonLength = 4;
 
   useEffect(() => {
-    let lessonSet = randomSubarray(lessons[id], 5);
-    setText(lessonSet);
-    const arrStr = encodeURIComponent(JSON.stringify(lessonSet));
+    const allLessons = lessons[id];
+    setIsLoading(true);
+    setText(allLessons)
+    const arrStr = encodeURIComponent(JSON.stringify(allLessons));
     const fullURL = `http://localhost:8081/latin/${arrStr}`;
-
-    fetchData(fullURL, setTranslation);
+    fetchData(fullURL, setAllTranslations);
+    setIsLoading(false);
   }, []);
+
+  const nextCard = max => {
+    if (currentCard === lessonLength) {
+      return "final";
+    }
+
+    const randomNum = Math.floor(Math.random() * max);
+    const cardTypes = ["textarea", "input"];
+    return cardTypes[randomNum];
+  }
 
   return (
     <main>
@@ -30,14 +43,20 @@ export const Lesson = () => {
         </button>
       </Link>
       <ModeButton />
-      <Card prompt="Translate this sentence "
-        type="textarea"
-        currentText={text[currentCard]}
-        currentCard={currentCard}
-        setCurrentCard={setCurrentCard}
-        translation={translation[currentCard]}
-      />
-      <div>hint the answer is {translation[currentCard]}</div>
+      {
+        console.log(text, currentCard) &&
+        isLoading ?
+        <div>LOADING</div>
+        :
+        <Card prompt="Translate this sentence "
+          type={nextCard(2)}
+          currentText={text[currentCard]}
+          currentCard={currentCard}
+          setCurrentCard={setCurrentCard}
+          translation={allTranslations[currentCard]}
+        />
+      }
+      
     </main>
   );
 };
