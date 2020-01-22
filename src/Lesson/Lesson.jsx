@@ -31,7 +31,7 @@ export const Lesson = () => {
     }
 
     const randomNum = Math.floor(Math.random() * max);
-    const cardTypes = ["textarea", "input"];
+    const cardTypes = ["textarea", "matching"];
     return cardTypes[randomNum];
   }
 
@@ -44,7 +44,6 @@ export const Lesson = () => {
       </Link>
       <ModeButton />
       {
-        console.log(text, currentCard) &&
         isLoading ?
         <div>LOADING</div>
         :
@@ -54,6 +53,8 @@ export const Lesson = () => {
           currentCard={currentCard}
           setCurrentCard={setCurrentCard}
           translation={allTranslations[currentCard]}
+          allTranslations={allTranslations}
+          text={text}
         />
       }
       

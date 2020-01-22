@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { compareTwoStrings } from '../helpers';
-import { ThemeContextConsumer } from '../themeContext';
+import { ThemeContextConsumer } from '../themeContext'; 
 
 export const Card = ({
   prompt,
@@ -8,7 +8,9 @@ export const Card = ({
   type,
   currentCard,
   setCurrentCard,
-  translation
+  translation,
+  allTranslations,
+  text
 }) => {
 
   const [userAnswer, setUserAnswer] = useState("");
@@ -68,15 +70,15 @@ export const Card = ({
           onKeyDown={handleOnKeyDown}>
         </textarea>
       )
-    } else if (type === "input") {
-      return (
-        <input type="text"
-          placeholder="Type the latin translation"
-          value={userAnswer}
-          onChange={handleChange}
-          onKeyDown={handleOnKeyDown}>
-        </input>
-      )
+    } else if (type === "matching") {
+        const transl = allTranslations.slice(4, 8);
+        const answers = text.slice(4, 8);
+
+        const toRender = [...transl, ...answers].map((word, index) => (
+          <button key={`${word}${index}`}>{word}</button>
+        ))
+
+    return <section>{toRender}</section>
     }
   }
 
@@ -84,10 +86,8 @@ export const Card = ({
     <ThemeContextConsumer>
       { value => 
         type === "final" 
-        ? 
-        renderFinal(value.theme)
-        :
-        <>
+        ? renderFinal(value.theme)
+        : <>
           <h4>{prompt}</h4>
           <article className={`${value.theme} lesson-card`}>
             <div>{currentText}</div>
