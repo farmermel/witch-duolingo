@@ -48,7 +48,7 @@ app.use((req, res, next) => {
       resp.status(200).json(translation)
     } catch (err) {
         console.log("api not available, falling back to fake answers")
-        resp.status(200).json(['["Pulchra tibi in occursum tibi", "Vale", "Salve", "Ignosce", "nomen meum"]'])
+        resp.status(200).json(['["Salve", "Vale", "Bonum mane", "Bonum vesperam", "Dea sit apud vos", "Vos noscere", "Veniam in me", "Nomen gerens Ariadna furores", "Di tibi male faciant", "Meum nomen est"]'])
       }
     }
   )
