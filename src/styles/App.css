@@ -48,6 +48,9 @@ main {
   border: #534656;
   box-shadow: 0px 4px 0px #534656; }
 
+.dark.final-card {
+  background-image: url("../assets/TarotCicada.png"); }
+
 .dark .incorrect {
   background-color: #9E2D3A;
   border: #72111C;
@@ -94,6 +97,9 @@ main {
   color: #000;
   border: #534656;
   box-shadow: 0px 4px 0px #534656; }
+
+.light.final-card {
+  background-image: url("../assets/TarotGuinea.png"); }
 
 .light .incorrect {
   background-color: #9E2D3A;

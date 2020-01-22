@@ -7,11 +7,15 @@
     width: 50px;
 }
 
-.lesson-card {
+.lesson-card, .final-card {
     border-radius: 10px;
     padding: 15px;
     height: 400px;
     width: 250px;
+}
+
+.final-card {
+    background-size: cover;
 }
 
 .lesson-card .medium-button {
