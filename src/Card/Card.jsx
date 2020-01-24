@@ -10,7 +10,8 @@ export const Card = ({
   setCurrentCard,
   translation,
   allTranslations,
-  text
+  text,
+  children
 }) => {
 
   const [userAnswer, setUserAnswer] = useState("");
@@ -23,6 +24,8 @@ export const Card = ({
     setTimeout(() => {
       setCurrentCard(currentCard + 1);
       setUserAnswer("");
+      //will need to somehow reset other kinds of cards as well
+      //maybe pass up button state, currentCard
       setButtonState({...buttonState, className: "correct"});
     }, 2500);
   };
@@ -37,22 +40,6 @@ export const Card = ({
     waitAndResetCard();
   };
 
-  const handleChange = event => {
-    setUserAnswer(event.target.value);
-
-    if (event.target.value.length && buttonState.disabled) {
-      setButtonState({buttonState, disabled: false});
-    } else if (!event.target.value.length && buttonState.enabled) {
-      setButtonState({className: "disabled", disabled: true});
-    }
-  };
-
-  const handleOnKeyDown = event => {
-    if (event.keyCode === 13 && event.shiftKey === false) {
-      handleSubmit(event);
-    }
-  };
-
   const renderFinal = theme  => (
     <>
       <h3>YOU DID IT PROUD OF YOU</h3>
@@ -61,26 +48,39 @@ export const Card = ({
     </>
   )
 
-  const renderQuizCards = (type) => {
-    if (type === "textarea") {
-      return (
-        <textarea placeholder="Type the latin translation"
-          value={userAnswer}
-          onChange={handleChange}
-          onKeyDown={handleOnKeyDown}>
-        </textarea>
-      )
-    } else if (type === "matching") {
-        const transl = allTranslations.slice(4, 8);
-        const answers = text.slice(4, 8);
+  //move this up to lesson and just set wrapper instead
+  // const renderQuizCards = (type) => {
+  //   if (type === "textarea") {
+  //     return (
+  //       <textarea placeholder="Type the latin translation"
+  //         value={userAnswer}
+  //         onChange={handleChange}
+  //         onKeyDown={handleOnKeyDown}>
+  //       </textarea>
+  //     )
+  //   } else if (type === "matching") {
+  //       const transl = allTranslations.slice(4, 8);
+  //       const answers = text.slice(4, 8);
 
-        const toRender = [...transl, ...answers].map((word, index) => (
-          <button key={`${word}${index}`}>{word}</button>
-        ))
+  //       const toRender = [...transl, ...answers].map((word, index) => (
+  //         <button key={`${word}${index}`}>{word}</button>
+  //       ))
 
-    return <section>{toRender}</section>
-    }
-  }
+  //   return <section>{toRender}</section>
+  //   }
+  // }
+
+//commonalities:
+//check button
+//prompt (ie translate this sentence)
+//progress bar on the top
+//english and latin 
+
+//differences:
+//Type the answer, 1:1 of latin and english
+//Select the answer from a list, many:1 latin:english
+//Make the answer from provided words, many:1 latin:english
+//pairing, many:many latin and english
 
   return (
     <ThemeContextConsumer>
@@ -93,7 +93,7 @@ export const Card = ({
             <div>{currentText}</div>
             <form onSubmit={handleSubmit}>
               {
-                renderQuizCards(type)
+                children
               }
               <button className={`${value} medium-button ${buttonState.className}`}
                 type="submit"

@@ -1,14 +1,17 @@
 import '../styles/Lesson.css';
-import { fetchData } from '../helpers';
+import { fetchData, normalizeString } from '../helpers';
 import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { Card } from '../Card/Card';
+import { MatchingCard } from '../Card/MatchingCard';
+import { WriteAnswerCard } from '../Card/WriteAnswerCard';
 import lessons from '../lessons.js';
 import { ModeButton } from '../ModeButton/ModeButton';
+import { ThemeContextConsumer } from '../themeContext';
 
 export const Lesson = () => {
   const [allTranslations, setAllTranslations] = useState([]);
-  const [text, setText] = useState([]);
+  const [allEnglish, setAllEnglish] = useState([]);
+  const [translationAnswers, setTranslationAnswers] = useState({})
   const [currentCard, setCurrentCard] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -18,46 +21,80 @@ export const Lesson = () => {
   useEffect(() => {
     const allLessons = lessons[id];
     setIsLoading(true);
-    setText(allLessons)
+    setAllEnglish(allLessons)
     const arrStr = encodeURIComponent(JSON.stringify(allLessons));
     const fullURL = `http://localhost:8081/latin/${arrStr}`;
     fetchData(fullURL, setAllTranslations);
-    setIsLoading(false);
   }, []);
 
-  const nextCard = max => {
+  useEffect(() => {
+    if (allTranslations != {}) {
+      console.log(allTranslations)
+      console.log(allEnglish)
+
+
+      const translationMap = allEnglish.reduce((acc, word, index) => {
+        acc[word] = normalizeString(allTranslations[index])
+        return acc;
+        }, {})
+      setTranslationAnswers(translationMap);
+    }
+    return setIsLoading(false);
+  }, [allTranslations])
+
+  const nextCard = (max, theme) => {
     if (currentCard === lessonLength) {
-      return "final";
+      return (
+        <>
+          <h3>YOU DID IT PROUD OF YOU</h3>
+          <article className={`${theme} final-card`}>
+          </article>
+       </>
+      );
     }
 
     const randomNum = Math.floor(Math.random() * max);
     const cardTypes = ["textarea", "matching"];
-    return cardTypes[randomNum];
-  }
 
-  return (
-    <main>
-      <Link tag="button" to="/user-home">
-        <button className="back-home">
-          Home
-        </button>
-      </Link>
-      <ModeButton />
-      {
-        isLoading ?
-        <div>LOADING</div>
-        :
-        <Card prompt="Translate this sentence "
-          type={nextCard(2)}
-          currentText={text[currentCard]}
+    if (cardTypes[randomNum] === "matching") {
+      return(<MatchingCard prompt="Make pairs"
+          currentCard={currentCard}
+          setCurrentCard={setCurrentCard}
+          translationAnswers={translationAnswers}
+        />)
+    } else {
+      return (<WriteAnswerCard prompt="Translate this sentence"
+          currentEnglish={allEnglish[currentCard]}
           currentCard={currentCard}
           setCurrentCard={setCurrentCard}
           translation={allTranslations[currentCard]}
-          allTranslations={allTranslations}
-          text={text}
-        />
+          translationAnswers={translationAnswers}
+        />)
+    }
+  }
+
+  return (
+    <ThemeContextConsumer>
+      {
+        value =>
+        <main>
+          <Link tag="button" to="/user-home">
+            <button className="back-home">
+              Home
+            </button>
+          </Link>
+          <ModeButton />
+          {
+            isLoading ?
+            <div>LOADING</div>
+            :
+            //this is a bug because the first render when getting data it goes twice and
+            //flashes the second option sometimes
+            nextCard(2, value.theme)
+
+          }
+        </main>
       }
-      
-    </main>
+    </ThemeContextConsumer>
   );
 };

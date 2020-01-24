@@ -5,7 +5,10 @@ export const ModeButton = () => (
     <ThemeContextConsumer>
         {   
             value =>
-            <div role="button" className={`${value.theme} mode-button`}
+            <div role="button" 
+                 className={`${value.theme} mode-button`
+                 //aria ignore???
+                }
                                onClick={value.toggleTheme}>
 
             </div>

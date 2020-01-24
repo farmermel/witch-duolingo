@@ -12,6 +12,15 @@
   height: 400px;
   width: 250px; }
 
+.match-button.selected {
+  background-color: aqua; }
+
+.match-button.correct {
+  background-color: green; }
+
+.match-button.incorrect {
+  background-color: red; }
+
 .final-card {
   background-size: cover; }
 
