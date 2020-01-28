@@ -14,18 +14,16 @@
     width: 250px;
 }
 
+.lesson-card.matching section {
+    padding: 15px;
+    height: fit-content;
+    width: 85%;
+}
+
 .match-button {
-    &.selected {
-        background-color: aqua;
-    }
-
-    &.correct {
-        background-color: green;
-    }
-
-    &.incorrect {
-        background-color: red;
-    }
+    border-radius: 8px;
+    padding: 8px;
+    margin: 3px;
 }
 
 .final-card {

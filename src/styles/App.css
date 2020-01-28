@@ -10,6 +10,12 @@
 button {
   cursor: pointer; }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
 .medium-button {
   border-radius: 10px;
   height: 30px;
@@ -42,19 +48,26 @@ main {
   border: #BCE784;
   box-shadow: 0px 4px 0px #5A930E; }
 
-.dark .disabled {
+.dark .correct {
+  background-color: #388232;
+  color: #D9F9D6;
+  border-color: #D9F9D6;
+  box-shadow: 0px 2px 0; }
+
+.dark .disabled, .dark.disabled {
   background-color: #D0D0E5;
   color: #000;
   border: #534656;
-  box-shadow: 0px 4px 0px #534656; }
+  box-shadow: 0px 4px 0px #534656;
+  cursor: default; }
 
 .dark.final-card {
   background-image: url("../assets/TarotCicada.png"); }
 
 .dark .incorrect {
   background-color: #9E2D3A;
-  border: #72111C;
-  box-shadow: 0px 4px 0px #72111C; }
+  border: 2px solid #72111C;
+  box-shadow: 0px 2px 0px #72111C; }
 
 .dark .incorrect:hover {
   background-color: #72111C; }
@@ -62,11 +75,17 @@ main {
 .dark.lesson-card {
   background-color: #243535; }
 
-.dark .medium-button:hover {
+.dark .selected {
+  background-color: #003C60;
+  color: #ADE7FF;
+  border-color: #ADE7FF;
+  box-shadow: 0px 2px 0 #ADE7FF; }
+
+.dark .medium-button:hover .correct {
   background-color: #5A930E;
   box-shadow: 0px 4px 0px #402944; }
 
-.dark .medium-button {
+.dark .medium-button .correct {
   background-color: #BCE784;
   border: #BCE784;
   box-shadow: 0px 4px 0px #5A930E; }
@@ -76,9 +95,11 @@ main {
   background-image: url("../assets/sun.svg"); }
 
 .dark textarea, .dark input {
-  border: 2px solid #E8E8FF;
+  border: 2px solid #485454;
   background-color: #3D4747;
   color: #E8E8FF; }
+  .dark textarea.untouched:hover, .dark input.untouched:hover {
+    box-shadow: 0 2px 0 #485454; }
 
 .light.App {
   background-color: #F4F4FF;
@@ -92,7 +113,7 @@ main {
   border: #BCE784;
   box-shadow: 0px 4px 0px #5A930E; }
 
-.light .disabled {
+.light .disabled, .light.disabled {
   background-color: #D0D0E5;
   color: #000;
   border: #534656;
