@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { isAnswerRight } from '../helpers';
 import { ThemeContextConsumer } from '../themeContext'; 
-import { wait } from '@testing-library/react';
 
-//is this component unmounting ever?
-
-//pass props for prompt, current text
-//pass render renderquizcards as children to Card
 export const MatchingCard = ({
     translationAnswers
   }) => {
@@ -21,7 +16,6 @@ export const MatchingCard = ({
         const modified = Object.entries(translationAnswers).slice(0,5).flat().reduce((acc, val) => {
             return {...acc, ...{[val]: "untouched"}}
         }, {})
-        console.log(modified)
         setButtonTranslationState(modified);
     }, [translationAnswers])
 
@@ -86,8 +80,8 @@ export const MatchingCard = ({
         <ThemeContextConsumer>
       { value => 
         <>
-          <h4>{prompt}</h4>
-          <article className={`${value.theme} lesson-card`}>
+          <h4>Click the pairs</h4>
+          <article className={`${value.theme} lesson-card matching`}>
             <form onSubmit={handleSubmit}>
             <section>
                 {Object.entries(buttonTranslationState).map((word, index) => (
@@ -98,7 +92,7 @@ export const MatchingCard = ({
                    className={`${word[1]} match-button`}/>
                 ))}
             </section>
-              <button className={`${value} medium-button ${buttonState.className}`}
+              <button className={`${value.theme} medium-button ${buttonState.className}`}
                 type="submit"
                 disabled={buttonState.disabled}>
                       Check
