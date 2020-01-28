@@ -1,4 +1,3 @@
-import '../styles/Lesson.css';
 import { fetchData, normalizeString } from '../helpers';
 import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';

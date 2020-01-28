@@ -1,4 +1,3 @@
-import '../styles/LandingPage.css';
 import { Footer } from '../Footer/Footer';
 import hamsa from '../assets/hamsa.svg';
 import { Link } from 'react-router-dom';

@@ -1,4 +1,3 @@
-import '../styles/UserHome.css';
 import { Header } from '../Header/Header';
 import { Link } from 'react-router-dom';
 import React from 'react';

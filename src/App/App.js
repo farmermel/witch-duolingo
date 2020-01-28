@@ -1,10 +1,10 @@
-import '../styles/App.css';
-import { Route, Switch } from 'react-router-dom';
-import { LandingPage } from '../LandingPage/LandingPage';
-import { Lesson } from '../Lesson/Lesson';
-import React from 'react';
-import { UserHome } from '../UserHome/UserHome';
-import { ThemeContextConsumer} from '../themeContext'
+import "../styles/index.css";
+import { Route, Switch } from "react-router-dom";
+import { LandingPage } from "../LandingPage/LandingPage";
+import { Lesson } from "../Lesson/Lesson";
+import React from "react";
+import { UserHome } from "../UserHome/UserHome";
+import { ThemeContextConsumer} from "../themeContext"
 
 export const App = () => (
 <ThemeContextConsumer>
