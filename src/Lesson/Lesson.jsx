@@ -33,7 +33,9 @@ export const Lesson = () => {
 
 
       const translationMap = allEnglish.reduce((acc, word, index) => {
-        acc[word] = normalizeString(allTranslations[index])
+        const normalizedTranslation = normalizeString(allTranslations[index])
+        acc[word] = normalizedTranslation;
+        acc[normalizedTranslation] = word;
         return acc;
         }, {})
       setTranslationAnswers(translationMap);

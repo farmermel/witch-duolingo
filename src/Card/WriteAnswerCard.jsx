@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { isAnswerRight, normalizeString } from '../helpers';
-import { ThemeContextConsumer } from '../themeContext'; 
+import React, { useState } from "react";
+import { CheckAnswerButton } from "../CheckAnswerButton/CheckAnswerButton";
+import { isAnswerRight, normalizeString } from "../helpers";
+import { ThemeContextConsumer } from "../themeContext"; 
 
 export const WriteAnswerCard = ({
     prompt,
@@ -9,31 +10,26 @@ export const WriteAnswerCard = ({
     setCurrentCard,
     translation,
     translationAnswers
-    // text
   }) => {
     const [userAnswer, setUserAnswer] = useState("");
-    const [buttonState, setButtonState] = useState({
-      disabled: true,
-      className: "disabled"
-    });
+    const [buttonState, setButtonState] = useState("disabled");
 
     const waitAndResetCard = () => {
       setTimeout(() => {
         setCurrentCard(currentCard + 1);
         setUserAnswer("");
-        setButtonState({...buttonState, className: "correct"});
+        setButtonState("disabled");
       }, 2500);
     };
   
     const handleSubmit = error => {
       error.preventDefault();
 
+      const isRight = isAnswerRight(translationAnswers, normalizeString(userAnswer));
 
-      isAnswerRight(translationAnswers, normalizeString(userAnswer));
-
-    //   compareTwoStrings([translation, userAnswer])
-    //     ? setButtonState({...buttonState, className: "correct"}) 
-    //     : setButtonState({...buttonState, className: "incorrect"});
+      isRight
+        ? setButtonState("correct") 
+        : setButtonState("incorrect");
   
       waitAndResetCard();
     };
@@ -55,10 +51,10 @@ export const WriteAnswerCard = ({
     const handleChange = event => {
         setUserAnswer(event.target.value);
 
-        if (event.target.value.length && buttonState.disabled) {
-          setButtonState({buttonState, disabled: false});
-        } else if (!event.target.value.length && buttonState.enabled) {
-          setButtonState({className: "disabled", disabled: true});
+        if (event.target.value.length && buttonState === "disabled") {
+          setButtonState("enabled");
+        } else if (!event.target.value.length && buttonState === "enabled") {
+          setButtonState("disabled");
         }
     };
     
@@ -81,11 +77,7 @@ export const WriteAnswerCard = ({
                 onChange={handleChange}
                 onKeyDown={handleOnKeyDown}>
             </textarea>
-              <button className={`${value} medium-button ${buttonState.className}`}
-                type="submit"
-                disabled={buttonState.disabled}>
-                      Check
-              </button>
+              <CheckAnswerButton theme={value.theme} buttonState={buttonState}></CheckAnswerButton>
             </form>
           </article>
           <div>hint the answer is {translation}</div>

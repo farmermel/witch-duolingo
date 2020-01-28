@@ -75,7 +75,7 @@ main {
 .dark.lesson-card {
   background-color: #243535; }
 
-.dark .selected {
+.dark .selected, .dark .enabled {
   background-color: #003C60;
   color: #ADE7FF;
   border-color: #ADE7FF;

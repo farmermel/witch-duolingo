@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { isAnswerRight } from '../helpers';
-import { ThemeContextConsumer } from '../themeContext'; 
+import React, { useEffect, useState } from "react";
+import { CheckAnswerButton } from "../CheckAnswerButton/CheckAnswerButton";
+import { isAnswerRight } from "../helpers";
+import { ThemeContextConsumer } from "../themeContext"; 
 
 export const MatchingCard = ({
     translationAnswers
   }) => {
     const [userAnswer, setUserAnswer] = useState("");
-    const [buttonState, setButtonState] = useState({
-      disabled: true,
-      className: "disabled"
-    });
+    const [buttonState, setButtonState] = useState("disabled");
     const [buttonTranslationState, setButtonTranslationState] = useState([])
 
     useEffect(() => {
@@ -44,8 +42,7 @@ export const MatchingCard = ({
         error.preventDefault();
     
         setCurrentCard(currentCard + 1);
-        //This is the reset behavior, really need to come up with a default that isn't correct
-        setButtonState({...buttonState, className: "correct"});
+        setButtonState("enabled");
       };
 
       const hanldeFirstClick = (value) => {
@@ -92,11 +89,7 @@ export const MatchingCard = ({
                    className={`${word[1]} match-button`}/>
                 ))}
             </section>
-              <button className={`${value.theme} medium-button ${buttonState.className}`}
-                type="submit"
-                disabled={buttonState.disabled}>
-                      Check
-              </button>
+              <CheckAnswerButton theme={value.theme} buttonState={buttonState}></CheckAnswerButton>
             </form>
           </article>
           <div>hint the answers are right next to each other</div>

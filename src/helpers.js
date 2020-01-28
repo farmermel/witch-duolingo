@@ -18,9 +18,3 @@ export const isAnswerRight = (translationAnswers, opt1, opt2) => {
 export const normalizeString = string => {
   return string.replace(/\s\s+/g, ' ').trim().toLowerCase();
 }
-
-// export const compareTwoStrings = strings => {
-//   const normalized = strings.map( str => str.replace(/\s\s+/g, ' ').trim().toLowerCase() );
-//   return  normalized[0] === normalized[1];
-// }
-
