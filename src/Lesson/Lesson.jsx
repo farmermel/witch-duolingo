@@ -1,11 +1,11 @@
 import { fetchData, normalizeString } from '../helpers';
 import { Link, useParams } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MatchingCard } from '../Card/MatchingCard';
 import { WriteAnswerCard } from '../Card/WriteAnswerCard';
 import lessons from '../lessons.js';
 import { ModeButton } from '../ModeButton/ModeButton';
-import { ThemeContextConsumer } from '../themeContext';
+import { ThemeContext } from '../App/App';
 
 export const Lesson = () => {
   const [allTranslations, setAllTranslations] = useState([]);
@@ -13,7 +13,7 @@ export const Lesson = () => {
   const [translationAnswers, setTranslationAnswers] = useState({})
   const [currentCard, setCurrentCard] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  
+  const value = useContext(ThemeContext);
   const { id } = useParams();
   const lessonLength = 4;
 
@@ -75,9 +75,7 @@ export const Lesson = () => {
   }
 
   return (
-    <ThemeContextConsumer>
-      {
-        value =>
+    <ThemeContext.Consumer>
         <main>
           <Link tag="button" to="/user-home">
             <button className="back-home">
@@ -95,7 +93,6 @@ export const Lesson = () => {
 
           }
         </main>
-      }
-    </ThemeContextConsumer>
+    </ThemeContext.Consumer>
   );
 };

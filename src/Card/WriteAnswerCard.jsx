@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CheckAnswerButton } from "../CheckAnswerButton/CheckAnswerButton";
 import { isAnswerRight, normalizeString } from "../helpers";
-import { ThemeContextConsumer } from "../themeContext"; 
+import { ThemeContext } from "../App/App";
 
 export const WriteAnswerCard = ({
     prompt,
@@ -13,6 +13,7 @@ export const WriteAnswerCard = ({
   }) => {
     const [userAnswer, setUserAnswer] = useState("");
     const [buttonState, setButtonState] = useState("disabled");
+    const value = useContext(ThemeContext);
 
     const waitAndResetCard = () => {
       setTimeout(() => {
@@ -21,7 +22,7 @@ export const WriteAnswerCard = ({
         setButtonState("disabled");
       }, 2500);
     };
-  
+
     const handleSubmit = error => {
       error.preventDefault();
 
@@ -65,8 +66,7 @@ export const WriteAnswerCard = ({
     };
 
     return (
-        <ThemeContextConsumer>
-      { value => 
+        <ThemeContext.Consumer>
         <>
           <h4>{prompt}</h4>
           <article className={`${value.theme} lesson-card`}>
@@ -82,7 +82,6 @@ export const WriteAnswerCard = ({
           </article>
           <div>hint the answer is {translation}</div>
         </>
-      }
-    </ThemeContextConsumer>
+    </ThemeContext.Consumer>
       )
 }

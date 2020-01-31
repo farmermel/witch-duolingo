@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CheckAnswerButton } from "../CheckAnswerButton/CheckAnswerButton";
 import { isAnswerRight } from "../helpers";
-import { ThemeContextConsumer } from "../themeContext"; 
+import { ThemeContext } from "../App/App"; 
 
 export const MatchingCard = ({
     translationAnswers
@@ -9,6 +9,7 @@ export const MatchingCard = ({
     const [userAnswer, setUserAnswer] = useState("");
     const [buttonState, setButtonState] = useState("disabled");
     const [buttonTranslationState, setButtonTranslationState] = useState([])
+    const value = useContext(ThemeContext);
 
     useEffect(() => {
         const modified = Object.entries(translationAnswers).slice(0,5).flat().reduce((acc, val) => {
@@ -74,8 +75,7 @@ export const MatchingCard = ({
       }
 
     return (
-        <ThemeContextConsumer>
-      { value => 
+        <ThemeContext.Consumer>
         <>
           <h4>Click the pairs</h4>
           <article className={`${value.theme} lesson-card matching`}>
@@ -94,6 +94,5 @@ export const MatchingCard = ({
           </article>
           <div>hint the answers are right next to each other</div>
         </>
-      }
-    </ThemeContextConsumer>
+    </ThemeContext.Consumer>
 )}

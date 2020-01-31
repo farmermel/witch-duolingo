@@ -1,18 +1,23 @@
-import { createMemoryHistory } from 'history';
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Router } from 'react-router-dom';
+import { createMemoryHistory } from "history";
+import { ThemeContext } from "../App/App";
+import React from "react";
+import { render } from "@testing-library/react";
+import { Router } from "react-router-dom";
 
-export function renderWithRouter(
+export function renderWithWrappers(
   ui,
   {
-    route = '/',
+    route = "/",
     history = createMemoryHistory({ initialEntries: [route] })
   } = {}
 ) {
   // eslint-disable-next-line
   const Wrapper = ({ children }) => (
-    <Router history={history}>{children}</Router>
+    <ThemeContext.Provider value={{theme: "dark"}}>
+      <Router history={history}>
+        {children}
+      </Router>
+    </ThemeContext.Provider>
   );
   return {
     ...render(ui, { wrapper: Wrapper }),

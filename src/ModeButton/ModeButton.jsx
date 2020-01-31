@@ -1,10 +1,11 @@
-import React from 'react';
-import { ThemeContextConsumer} from '../themeContext'
+import React, { useContext } from 'react';
+import { ThemeContext } from '../App/App';
 
-export const ModeButton = () => (
-    <ThemeContextConsumer>
-        {   
-            value =>
+export const ModeButton = () => {
+    const value = useContext(ThemeContext);
+
+    return (
+    <ThemeContext.Consumer>
             <div role="button" 
                  className={`${value.theme} mode-button`
                  //aria ignore???
@@ -12,6 +13,5 @@ export const ModeButton = () => (
                                onClick={value.toggleTheme}>
 
             </div>
-        }
-    </ThemeContextConsumer>
-)
+    </ThemeContext.Consumer>
+)}

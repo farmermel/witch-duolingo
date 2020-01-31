@@ -2,13 +2,17 @@ import "../styles/index.css";
 import { Route, Switch } from "react-router-dom";
 import { LandingPage } from "../LandingPage/LandingPage";
 import { Lesson } from "../Lesson/Lesson";
-import React from "react";
+import React, { useContext } from "react";
 import { UserHome } from "../UserHome/UserHome";
-import { ThemeContextConsumer} from "../themeContext"
+// import { ThemeContext } from "../index";
 
-export const App = () => (
-<ThemeContextConsumer>
-  { value => (
+export const ThemeContext = React.createContext({theme: "dark", toggle: () => {}});
+
+export const App = () => {
+  const value = useContext(ThemeContext);
+  
+  return (
+<ThemeContext.Consumer>
     <div className={`${value.theme} App`}>
       <Switch>
         <Route path="/lesson/:id">
@@ -22,8 +26,7 @@ export const App = () => (
         </Route>
       </Switch>
     </div>
-    )}
-    </ThemeContextConsumer>
-);
+  </ThemeContext.Consumer>
+)};
 
 export default App;
