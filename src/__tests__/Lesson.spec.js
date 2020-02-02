@@ -3,6 +3,8 @@ import { fireEvent, screen } from "@testing-library/react";
 import { Lesson } from "../Lesson/Lesson";
 import React from "react";
 import { renderWithWrappers } from "./test-utils.js";
+//for flat method
+import 'core-js';
 
 test("runs tests", () => {
   const {getByRole} = renderWithWrappers(<Lesson />);

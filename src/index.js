@@ -1,15 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App, { ThemeContext } from './App/App'
+import App from './App/App'
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Router} from 'react-router-dom';
+import { ThemeContext } from "./themeContext";
 
 //put in toggle
 
   ReactDOM.render(
     <Router>
-      <ThemeContext.Provider>
+      <ThemeContext.Provider value={{theme: "dark", toggle: () => {}}}>
           <App />
       </ThemeContext.Provider>
     </Router>, document.getElementById('root'));

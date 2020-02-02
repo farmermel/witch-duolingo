@@ -10,7 +10,7 @@ function makeMoreLessons() {
       <div className="lesson"
         // TODO: when something is substantively different 
         // about lessons make key not an index
-        key={`lesson{$index}`}>
+        key={`lesson${index}`}>
         <Link to={`/lesson/${index}`} 
           className="router-link">
           Lesson {index}
@@ -23,10 +23,10 @@ function makeMoreLessons() {
 }
 
 export const UserHome = () => (
-  <body className="Userhome">
+  <div className="Userhome">
     <Header className="header" />
     <main>
       {makeMoreLessons()}
     </main>
-  </body>
+  </div>
 );

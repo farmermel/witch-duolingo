@@ -1,18 +1,15 @@
 import "../styles/index.css";
+import React, { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import { LandingPage } from "../LandingPage/LandingPage";
 import { Lesson } from "../Lesson/Lesson";
-import React, { useContext } from "react";
+import { ThemeContext } from "../themeContext";
 import { UserHome } from "../UserHome/UserHome";
-// import { ThemeContext } from "../index";
-
-export const ThemeContext = React.createContext({theme: "dark", toggle: () => {}});
 
 export const App = () => {
   const value = useContext(ThemeContext);
   
   return (
-<ThemeContext.Consumer>
     <div className={`${value.theme} App`}>
       <Switch>
         <Route path="/lesson/:id">
@@ -26,7 +23,7 @@ export const App = () => {
         </Route>
       </Switch>
     </div>
-  </ThemeContext.Consumer>
-)};
+  ); 
+};
 
 export default App;

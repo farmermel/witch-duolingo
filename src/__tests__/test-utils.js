@@ -1,8 +1,8 @@
 import { createMemoryHistory } from "history";
-import { ThemeContext } from "../App/App";
 import React from "react";
 import { render } from "@testing-library/react";
 import { Router } from "react-router-dom";
+import { ThemeContext } from "../themeContext";
 
 export function renderWithWrappers(
   ui,
