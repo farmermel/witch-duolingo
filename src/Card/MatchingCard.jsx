@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CheckAnswerButton } from "../CheckAnswerButton/CheckAnswerButton";
 import { isAnswerRight } from "../helpers";
-import { ThemeContext } from "../themeContext";
+import { ThemeContext } from "../contexts/themeContext";
 
 export const MatchingCard = ({
   translationAnswers,

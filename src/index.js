@@ -1,19 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App/App'
-import * as serviceWorker from './serviceWorker';
-import {BrowserRouter as Router} from 'react-router-dom';
-import { ThemeContext } from "./themeContext";
+import React from "react"
+import ReactDOM from "react-dom"
+import "./index.css"
+import App from "./App/App"
+import * as serviceWorker from "./serviceWorker";
+import {BrowserRouter as Router} from "react-router-dom";
+import { LessonsContext } from "./contexts/lessonsContext"
+import { ThemeContext } from "./contexts/themeContext";
 
 //put in toggle
 
   ReactDOM.render(
     <Router>
       <ThemeContext.Provider value={{theme: "dark", toggle: () => {}}}>
+        <LessonsContext.Provider lessons={[]}>
           <App />
+        </LessonsContext.Provider>
       </ThemeContext.Provider>
-    </Router>, document.getElementById('root'));
+    </Router>, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

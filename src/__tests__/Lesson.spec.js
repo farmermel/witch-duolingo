@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom/extend-expect";
+import { createMemoryHistory } from "history";
 import { fireEvent, screen } from "@testing-library/react";
 import { Lesson } from "../Lesson/Lesson";
 import React from "react";
@@ -6,14 +7,19 @@ import { renderWithWrappers } from "./test-utils.js";
 //for flat method
 import 'core-js';
 
+const lessonHistory = {
+  route: "/lesson/0",
+  history: createMemoryHistory({ initialEntries: ["/lesson/0"] })
+}
+
 test("runs tests", () => {
-  const {getByRole} = renderWithWrappers(<Lesson />);
-  const input = getByRole("input");
+  const {getByRole} = renderWithWrappers(<Lesson />, lessonHistory);
+  const form = getByRole("form");
   
   expect(screen.queryByText("Translate this sentence")).toBeDefined();
   expect(screen.getByText("Check").toHaveProperty("disabled"));
-  fireEvent.change(input, { target: { value: "Hi" } });
-  expect(input.value).toBe("Hi");
+  fireEvent.change(form, { target: { value: "Hi" } });
+  expect(form.value).toBe("Hi");
 //   fireEvent.click(screen.getByText("Pay the Price"));
 //   expect(screen.queryByText("First Lesson")).toBeDefined();
 });

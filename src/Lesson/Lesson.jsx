@@ -1,11 +1,11 @@
-import { fetchData, normalizeString } from '../helpers';
-import { Link, useParams } from 'react-router-dom';
-import React, { useContext, useEffect, useState } from 'react';
-import lessons from '../lessons.js';
-import { MatchingCard } from '../Card/MatchingCard';
-import { ModeButton } from '../ModeButton/ModeButton';
-import { ThemeContext } from "../themeContext";
-import { WriteAnswerCard } from '../Card/WriteAnswerCard';
+import { fetchData, normalizeString } from "../helpers";
+import { Link, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { LessonsContext } from "../contexts/LessonsContext";
+import { MatchingCard } from "../Card/MatchingCard";
+import { ModeButton } from "../ModeButton/ModeButton";
+import { ThemeContext } from "../contexts/themeContext";
+import { WriteAnswerCard } from "../Card/WriteAnswerCard";
 
 export const Lesson = () => {
   const [allTranslations, setAllTranslations] = useState([]);
@@ -14,6 +14,7 @@ export const Lesson = () => {
   const [currentCard, setCurrentCard] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const value = useContext(ThemeContext);
+  const lessons = useContext(LessonsContext);
   const { id } = useParams();
   const lessonLength = 4;
 
