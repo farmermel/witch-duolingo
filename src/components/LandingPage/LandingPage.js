@@ -1,5 +1,5 @@
 import { Footer } from '../Footer/Footer';
-import hamsa from '../assets/hamsa.svg';
+import hamsa from '../../assets/hamsa.svg';
 import { Link } from 'react-router-dom';
 import React from 'react';
 

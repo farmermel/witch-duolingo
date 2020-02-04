@@ -1,14 +1,15 @@
 import { createMemoryHistory } from "history";
-import lessons from "../lessons";
-import { LessonsContext } from "../contexts/lessonsContext";
+import lessons from "./lessons";
+import { LessonsContext } from "./contexts/lessonsContext";
 import React from "react";
 import { render } from "@testing-library/react";
-import { Router } from "react-router-dom";
-import { ThemeContext } from "../contexts/themeContext";
+import { Router, Route } from "react-router-dom";
+import { ThemeContext } from "./contexts/themeContext";
 
 export function renderWithWrappers(
   ui,
   {
+    path = "/",
     route = "/",
     history = createMemoryHistory({ initialEntries: [route] })
   } = {}
@@ -16,9 +17,11 @@ export function renderWithWrappers(
   // eslint-disable-next-line
   const Wrapper = ({ children }) => (
     <ThemeContext.Provider value={{theme: "dark"}}>
-      <LessonsContext.Provider lessons={lessons}>
+      <LessonsContext.Provider value={lessons}>
         <Router history={history}>
-          {children}
+          <Route path={path}>
+            {children}
+          </Route>
         </Router>
       </LessonsContext.Provider>
     </ThemeContext.Provider>

@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom/extend-expect";
 import { fireEvent, screen } from "@testing-library/react";
-import { App } from "../App/App";
+import { App } from "../components/App/App";
 import React from "react";
-import { renderWithWrappers } from "./test-utils.js";
+import { renderWithWrappers } from "../test-utils.js";
 
 test('runs tests', () => {
   renderWithWrappers(<App />);

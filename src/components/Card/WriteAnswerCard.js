@@ -1,7 +1,7 @@
-import { isAnswerRight, normalizeString } from "../helpers";
+import { isAnswerRight, normalizeString } from "../../helpers";
 import React, { useContext, useState } from "react";
 import { CheckAnswerButton } from "../CheckAnswerButton/CheckAnswerButton";
-import { ThemeContext } from "../contexts/themeContext";
+import { ThemeContext } from "../../contexts/themeContext";
 
 export const WriteAnswerCard = ({
   prompt,

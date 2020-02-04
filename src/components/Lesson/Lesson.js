@@ -1,10 +1,10 @@
-import { fetchData, normalizeString } from "../helpers";
+import { fetchData, normalizeString } from "../../helpers";
 import { Link, useParams } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
-import { LessonsContext } from "../contexts/LessonsContext";
+import { LessonsContext } from "../../contexts/lessonsContext";
 import { MatchingCard } from "../Card/MatchingCard";
 import { ModeButton } from "../ModeButton/ModeButton";
-import { ThemeContext } from "../contexts/themeContext";
+import { ThemeContext } from "../../contexts/themeContext";
 import { WriteAnswerCard } from "../Card/WriteAnswerCard";
 
 export const Lesson = () => {
@@ -13,7 +13,7 @@ export const Lesson = () => {
   const [translationAnswers, setTranslationAnswers] = useState({});
   const [currentCard, setCurrentCard] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const value = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   const lessons = useContext(LessonsContext);
   const { id } = useParams();
   const lessonLength = 4;
@@ -84,7 +84,7 @@ export const Lesson = () => {
           <div>LOADING</div>
           :
         //this is a bug because random, get rid of randomness
-          nextCard(2, value.theme)
+          nextCard(2, theme.theme)
       }
     </main>
   );

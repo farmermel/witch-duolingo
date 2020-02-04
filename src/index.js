@@ -1,18 +1,18 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import "./index.css"
-import App from "./App/App"
+import App from "./components/App/App"
 import * as serviceWorker from "./serviceWorker";
-import {BrowserRouter as Router} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import lessons from "./lessons";
 import { LessonsContext } from "./contexts/lessonsContext"
 import { ThemeContext } from "./contexts/themeContext";
 
 //put in toggle
-
   ReactDOM.render(
     <Router>
       <ThemeContext.Provider value={{theme: "dark", toggle: () => {}}}>
-        <LessonsContext.Provider lessons={[]}>
+        <LessonsContext.Provider value={lessons}>
           <App />
         </LessonsContext.Provider>
       </ThemeContext.Provider>
