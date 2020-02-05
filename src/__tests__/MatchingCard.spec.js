@@ -7,23 +7,37 @@ import { renderWithWrappers } from '../test-utils';
 import 'core-js';
 
 const fakeTranslationAnswers = {
-  Hello: "salve", 
+  Hello: "Salve", 
   Goodbye: "Vale", 
   nonsense: "nonsense", 
   fake: "fake", 
   five: "five"
 };
 
-const { getAllByRole } = renderWithWrappers(<MatchingCard translationAnswers={fakeTranslationAnswers}
-  setCurrentCard={() => {}} 
-/>);
+let getAllByRole, getByText;
 
 beforeEach(async () => {
+  ({ getAllByRole, getByText } = renderWithWrappers(<MatchingCard translationAnswers={fakeTranslationAnswers}
+    setCurrentCard={() => {}} 
+  />));
+
   await waitForElement(
     () => getAllByRole("textbox")
   )
 })
 
-test("first click changes clicked button to selected state", () => {
+test("first word selected changes clicked word to selected state", () => {
   expect(getAllByRole("textbox")[0]).toHaveValue("Hello");
+  fireEvent.click(getByText("Hello"))
+  expect(getAllByRole("textbox")[0]).toHaveClass("selected");
+});
+
+test("second and correct word selected changes both clicked words to correct state then fades to disabled", () => {
+  expect(getAllByRole("textbox")[0]).toHaveValue("Hello");
+  
+  fireEvent.click(getByText("Hello"));
+  fireEvent.click(getByText("Salve"));
+
+  expect(getAllByRole("textbox")[0]).toHaveClass("correct");
+  expect(getAllByRole("textbox")[1]).toHaveClass("correct");
 });

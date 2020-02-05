@@ -29,17 +29,16 @@ export const MatchingCard = ({
   //that returns when userAnswer is length one
   //but handles setting correct and incorrect when userAnswer is length two?
 
-  const waitAndResetCard = isRight => {
-    const evaluated = Object.entries(buttonTranslationState).map(val => {
-      if (val[1] === "selected") {
-        val[1] = isRight ? "correct" : "incorrect";
-      }
-      return val;
-    });
+  const waitAndResetCard = evaluated => {
+    // const evaluated = Object.entries(buttonTranslationState).map(val => {
+    //   if (val[1] === "selected") {
+    //     val[1] = isRight ? "correct" : "incorrect";
+    //   }
+    //   return val;
+    // });
     setButtonTranslationState(Object.fromEntries(evaluated));
     //still need to handle final correct answer (enable check button)
     setTimeout(() => {
-
       setUserAnswer("");
     }, 1000);
   };
@@ -50,7 +49,7 @@ export const MatchingCard = ({
     setButtonState("enabled");
   };
 
-  const hanldeFirstClick = (value) => {
+  const hanldeFirstClick = value => {
     setUserAnswer(value);
     setButtonTranslationState({
       ...buttonTranslationState,
@@ -58,11 +57,19 @@ export const MatchingCard = ({
     });
   };
 
-  const handleSecondClick = (value) => {
+  const handleSecondClick = value => {
     const isRight = isAnswerRight(translationAnswers, userAnswer, value);
+    const evaluated = Object.entries(buttonTranslationState).map(val => {
+      if (val[1] === "selected" || val[0] === value) {
+        val[1] = isRight ? "correct" : "incorrect";
+      }
+      return val;
+    });
+
     setButtonTranslationState({...buttonTranslationState, [value]: "selected"});
 
-    waitAndResetCard(isRight);
+    waitAndResetCard(evaluated);
+
     //wait, then disable those buttons and clear userAnswer
     //when all buttons are disabled, then enable submit button
     //set aria state as well
