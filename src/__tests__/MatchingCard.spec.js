@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/extend-expect';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitForElement } from '@testing-library/react';
 import { MatchingCard } from '../components/Card/MatchingCard';
 import React from 'react';
 import { renderWithWrappers } from '../test-utils';
@@ -14,9 +14,16 @@ const fakeTranslationAnswers = {
   five: "five"
 };
 
-test("first click changes clicked button to selected state", () => {
-  renderWithWrappers(<MatchingCard translationAnswers={fakeTranslationAnswers}
-    setCurrentCard={() => {}} />);
+const { getAllByRole } = renderWithWrappers(<MatchingCard translationAnswers={fakeTranslationAnswers}
+  setCurrentCard={() => {}} 
+/>);
 
-  expect(screen.queryByRole("input")).toHaveTextContent("Hello");
+beforeEach(async () => {
+  await waitForElement(
+    () => getAllByRole("textbox")
+  )
+})
+
+test("first click changes clicked button to selected state", () => {
+  expect(getAllByRole("textbox")[0]).toHaveValue("Hello");
 });
