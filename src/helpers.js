@@ -9,10 +9,7 @@ export async function fetchData(url, stateUpdateFunction) {
   }
 
 export const isAnswerRight = (translationAnswers, opt1, opt2) => {
-  const maybeRight1 = translationAnswers[opt1];
-  const maybeRight2 = translationAnswers[opt2];
-  console.log("if user answers are right one should not be undefined", maybeRight1, maybeRight2)
-  return maybeRight1 !== undefined || maybeRight2 !== undefined
+  return (translationAnswers[opt1] === opt2 || translationAnswers[opt2] === opt1)
 }
 
 export const normalizeString = string => {

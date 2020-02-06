@@ -58,7 +58,6 @@ main {
   background-color: #D0D0E5;
   color: #000;
   border: #534656;
-  box-shadow: 0px 4px 0px #534656;
   cursor: default; }
 
 .dark.final-card {
@@ -116,8 +115,7 @@ main {
 .light .disabled, .light.disabled {
   background-color: #D0D0E5;
   color: #000;
-  border: #534656;
-  box-shadow: 0px 4px 0px #534656; }
+  border: #534656; }
 
 .light.final-card {
   background-image: url("../assets/TarotGuinea.png"); }

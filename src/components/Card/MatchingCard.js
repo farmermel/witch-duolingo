@@ -13,14 +13,13 @@ export const MatchingCard = ({
   const value = useContext(ThemeContext);
 
   useEffect(() => {
-
-    const modified = Object.entries(translationAnswers)
+    const untouchedOptions = Object.entries(translationAnswers)
       .slice(0, 5)
       .flat()
       .reduce((acc, val) => {
         return {...acc, ...{[val]: "untouched"}};
       }, {});
-    setButtonTranslationState(modified);
+    setButtonTranslationState(untouchedOptions);
   }, [translationAnswers]);
 
   //Right now, handling reset directly by calling it
@@ -29,16 +28,17 @@ export const MatchingCard = ({
   //that returns when userAnswer is length one
   //but handles setting correct and incorrect when userAnswer is length two?
 
-  const waitAndResetCard = evaluated => {
-    // const evaluated = Object.entries(buttonTranslationState).map(val => {
-    //   if (val[1] === "selected") {
-    //     val[1] = isRight ? "correct" : "incorrect";
-    //   }
-    //   return val;
-    // });
-    setButtonTranslationState(Object.fromEntries(evaluated));
+  const waitAndResetCard = (isRight, newButtonTranslationState) => {
+    const newClass = isRight ? "disabled" : "untouched";
+    const resolvedState = Object.entries(newButtonTranslationState).map(val => {
+      if (val[1] === "correct" || val[1] === "incorrect") {
+        val[1] = newClass;
+      }
+      return val;
+    });
     //still need to handle final correct answer (enable check button)
     setTimeout(() => {
+      setButtonTranslationState(Object.fromEntries(resolvedState));
       setUserAnswer("");
     }, 1000);
   };
@@ -50,6 +50,8 @@ export const MatchingCard = ({
   };
 
   const hanldeFirstClick = value => {
+    if (buttonTranslationState[value] === "disabled") return;
+
     setUserAnswer(value);
     setButtonTranslationState({
       ...buttonTranslationState,
@@ -66,9 +68,10 @@ export const MatchingCard = ({
       return val;
     });
 
-    setButtonTranslationState({...buttonTranslationState, [value]: "selected"});
+    const newButtonTranslationState = Object.fromEntries(evaluated);
 
-    waitAndResetCard(evaluated);
+    setButtonTranslationState(newButtonTranslationState);
+    waitAndResetCard(isRight, newButtonTranslationState);
 
     //wait, then disable those buttons and clear userAnswer
     //when all buttons are disabled, then enable submit button

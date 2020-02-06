@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/eslint/bin/eslint.js ./src/*/*.js{,x}",
+    "lint": "./node_modules/eslint/bin/eslint.js ./src/*/*.js",
     "build-css": "node-sass-chokidar src/ -o src/ --recursive",
     "watch-css": "npm run build-css && node-sass-chokidar src/styles/sass -o src/styles/css --watch"
   },
