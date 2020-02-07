@@ -6,16 +6,16 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
 import lessons from "./lessons";
 import { LessonsContext } from "./contexts/lessonsContext"
-import { ThemeContext } from "./contexts/themeContext";
+import { ThemeContextProvider } from "./contexts/themeContext";
 
 //put in toggle
   ReactDOM.render(
     <Router>
-      <ThemeContext.Provider value={{theme: "dark", toggle: () => {}}}>
+      <ThemeContextProvider>
         <LessonsContext.Provider value={lessons}>
           <App />
         </LessonsContext.Provider>
-      </ThemeContext.Provider>
+      </ThemeContextProvider>
     </Router>, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change

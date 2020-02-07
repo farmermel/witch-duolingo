@@ -7,10 +7,10 @@ import { ThemeContext } from "../../contexts/themeContext";
 import { UserHome } from "../UserHome/UserHome";
 
 export const App = () => {
-  const value = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
   
   return (
-    <div className={`${value.theme} App`}>
+    <div className={`${theme.theme} App`}>
       <Switch>
         <Route path="/lesson/:id">
           <Lesson />

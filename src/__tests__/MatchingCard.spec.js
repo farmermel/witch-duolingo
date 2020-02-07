@@ -9,15 +9,15 @@ import 'core-js';
 const fakeTranslationAnswers = {
   Hello: "Salve", 
   Goodbye: "Vale", 
-  nonsense: "nonsense", 
-  fake: "fake", 
-  five: "five"
+  nonsense: "none", 
+  fake: "is", 
+  five: "ve"
 };
 
-let getAllByRole, getByText;
+let getAllByRole, getByText, getByRole;
 
 beforeEach(async () => {
-  ({ getAllByRole, getByText } = renderWithWrappers(<MatchingCard translationAnswers={fakeTranslationAnswers}
+  ({ getAllByRole, getByText, getByRole } = renderWithWrappers(<MatchingCard translationAnswers={fakeTranslationAnswers}
     setCurrentCard={() => {}} 
   />));
 
@@ -78,4 +78,19 @@ test("second and incorrect word selected changes both clicked words to incorrect
 
   expect(getAllByRole("textbox")[0]).toHaveClass("untouched");
   expect(getAllByRole("textbox")[2]).toHaveClass("untouched");
+});
+
+test("last correct match enables check button", async () => {
+  expect(getAllByRole("textbox")[0]).toHaveValue("Hello");
+  
+  fireEvent.click(getByText("Hello"));
+  fireEvent.click(getByText("Goodbye"));
+  fireEvent.click(getByText("nonsense"));
+  fireEvent.click(getByText("none"));
+  fireEvent.click(getByText("fake"));
+  fireEvent.click(getByText("is"));
+  fireEvent.click(getByText("five"));
+  fireEvent.click(getByText("ve"));
+
+  expect(getByRole("button")).toHaveClass("enabled");
 });

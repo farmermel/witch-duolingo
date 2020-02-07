@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import { ThemeContext } from "../../contexts/themeContext";
 
 export const ModeButton = () => {
-  const value = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   return (
     <div role="button" 
-      className={`${value.theme} mode-button`
+      className={`${theme.theme} mode-button`
         //aria ignore???
       }
-      onClick={value.toggleTheme}>
+      onClick={() => theme.toggle()}>
 
     </div>
   ); 

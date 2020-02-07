@@ -67,16 +67,13 @@ export const MatchingCard = ({
       }
       return val;
     });
-
     const newButtonTranslationState = Object.fromEntries(evaluated);
 
     setButtonTranslationState(newButtonTranslationState);
     waitAndResetCard(isRight, newButtonTranslationState);
 
-    //wait, then disable those buttons and clear userAnswer
     //when all buttons are disabled, then enable submit button
     //set aria state as well
-
   };
 
   const handleOnClick = ({ target }) => {
