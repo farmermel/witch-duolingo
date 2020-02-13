@@ -25,12 +25,11 @@ export const Lesson = () => {
     const arrStr = encodeURIComponent(JSON.stringify(allLessons));
     const fullURL = `http://localhost:8081/latin/${arrStr}`;
     fetchData(fullURL, setAllTranslations);
-  }, [id]);
+  }, [id, lessons]);
 
   useEffect(() => {
     if (allTranslations.length > 0) {
       const translationMap = allEnglish.reduce((acc, word, index) => {
-        console.log(allTranslations[index])
         const normalizedTranslation = normalizeString(allTranslations[index]);
         acc[word] = normalizedTranslation;
         acc[normalizedTranslation] = word;

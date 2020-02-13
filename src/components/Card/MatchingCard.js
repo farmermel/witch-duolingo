@@ -9,7 +9,7 @@ export const MatchingCard = ({
   const [userAnswer, setUserAnswer] = useState("");
   const [buttonState, setButtonState] = useState("disabled");
   const [buttonTranslationState, setButtonTranslationState] = useState([]);
-  const value = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   useEffect(() => {
     const untouchedOptions = Object.entries(translationAnswers)
@@ -47,20 +47,20 @@ export const MatchingCard = ({
     incrementCard();
   };
 
-  const hanldeFirstClick = value => {
-    if (buttonTranslationState[value] === "disabled") return;
+  const hanldeFirstClick = theme => {
+    if (buttonTranslationState[theme] === "disabled") return;
 
-    setUserAnswer(value);
+    setUserAnswer(theme);
     setButtonTranslationState({
       ...buttonTranslationState,
-      [value]: "selected"
+      [theme]: "selected"
     });
   };
 
-  const handleSecondClick = value => {
-    const isRight = isAnswerRight(translationAnswers, userAnswer, value);
+  const handleSecondClick = theme => {
+    const isRight = isAnswerRight(translationAnswers, userAnswer, theme);
     const evaluated = Object.entries(buttonTranslationState).map(val => {
-      if (val[1] === "selected" || val[0] === value) {
+      if (val[1] === "selected" || val[0] === theme) {
         val[1] = isRight ? "correct" : "incorrect";
       }
       return val;
@@ -76,8 +76,8 @@ export const MatchingCard = ({
 
   const handleOnClick = ({ target }) => {
     userAnswer === ""
-      ? hanldeFirstClick(target.value)
-      : handleSecondClick(target.value);
+      ? hanldeFirstClick(target.theme)
+      : handleSecondClick(target.theme);
   };
 
 
@@ -88,18 +88,18 @@ const isAnswerRight = (translationAnswers, opt1, opt2) => (
   return (
     <>
       <h4>Click the pairs</h4>
-      <article className={`${value.theme} lesson-card matching`}>
+      <article className={`${theme.theme} lesson-card matching`}>
         <form onSubmit={handleSubmit}>
           <section>
             {Object.entries(buttonTranslationState).map((word, index) => (
               <input key={`${word}${index}`}
                 onClick={handleOnClick}
                 type="button"
-                value={word[0]}
+                theme={word[0]}
                 className={`${word[1]} match-button`}/>
             ))}
           </section>
-          <CheckAnswerButton theme={value.theme} 
+          <CheckAnswerButton theme={theme.theme} 
             buttonState={buttonState}>
           </CheckAnswerButton>
         </form>

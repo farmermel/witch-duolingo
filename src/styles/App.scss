@@ -92,11 +92,23 @@ main {
     background-color: #243535;
   }
 
-  .selected, .enabled {
+  a {
+    color: #ADE7FF;
+  }
+
+  .selected, .enabled, .medium-button {
     background-color: #003C60;
     color: #ADE7FF;
     border-color: #ADE7FF;
     box-shadow: 0px 2px 0 #ADE7FF;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #ADE7FF;
+      a {
+        color: #003C60;
+      }
+    }
   }
   
   .medium-button:hover .correct {
