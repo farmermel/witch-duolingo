@@ -37,8 +37,12 @@ export const Lesson = () => {
       }, {});
       setTranslationAnswers(translationMap);
     }
-    return setIsLoading(false);
+    setIsLoading(false);
   }, [allTranslations, allEnglish]);
+
+  const incrementCard = () => {
+    setCurrentCard(currentCard + 1)
+  }
 
   const nextCard = (max, theme) => {
     if (currentCard === lessonLength) {
@@ -57,14 +61,14 @@ export const Lesson = () => {
     if (cardTypes[randomNum] === "matching") {
       return (<MatchingCard prompt="Make pairs"
         currentCard={currentCard}
-        setCurrentCard={setCurrentCard}
+        incrementCard={incrementCard}
         translationAnswers={translationAnswers}
       />);
     } else {
       return (<WriteAnswerCard prompt="Translate this sentence"
         currentEnglish={allEnglish[currentCard]}
         currentCard={currentCard}
-        setCurrentCard={setCurrentCard}
+        incrementCard={incrementCard}
         translation={allTranslations[currentCard]}
         translationAnswers={translationAnswers}
       />);

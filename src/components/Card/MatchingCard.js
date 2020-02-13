@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CheckAnswerButton } from "../CheckAnswerButton/CheckAnswerButton";
-import { isAnswerRight } from "../../helpers";
 import { ThemeContext } from "../../contexts/themeContext";
 
 export const MatchingCard = ({
@@ -87,6 +86,11 @@ export const MatchingCard = ({
     //(either reset buttons as unclicked)
     //or flash green then disable
   };
+
+
+const isAnswerRight = (translationAnswers, opt1, opt2) => (
+  translationAnswers[opt1] === opt2 || translationAnswers[opt2] === opt1
+)
 
   return (
     <>

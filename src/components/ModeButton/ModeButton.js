@@ -7,9 +7,8 @@ export const ModeButton = () => {
   return (
     <div role="button" 
       className={`${theme.theme} mode-button`
-        //aria ignore???
       }
-      onClick={() => theme.toggle()}>
+      onClick={theme.toggle}>
 
     </div>
   ); 

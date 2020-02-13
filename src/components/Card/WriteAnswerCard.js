@@ -1,13 +1,13 @@
-import { isAnswerRight, normalizeString } from "../../helpers";
+import { normalizeString } from "../../helpers";
 import React, { useContext, useState } from "react";
 import { CheckAnswerButton } from "../CheckAnswerButton/CheckAnswerButton";
 import { ThemeContext } from "../../contexts/themeContext";
 
 export const WriteAnswerCard = ({
+  //cut down on things being passed, probably don't need translation or currentEnglish?
   prompt,
   currentEnglish,
-  currentCard,
-  setCurrentCard,
+  incrementCard,
   translation,
   translationAnswers
 }) => {
@@ -17,7 +17,7 @@ export const WriteAnswerCard = ({
 
   const waitAndResetCard = () => {
     setTimeout(() => {
-      setCurrentCard(currentCard + 1);
+      incrementCard();
       setUserAnswer("");
       setButtonState("disabled");
     }, 2500);
@@ -52,6 +52,12 @@ export const WriteAnswerCard = ({
       handleSubmit(event);
     }
   };
+
+
+const isAnswerRight = (translationAnswers, opt1) => {
+  const found = Object.values(translationAnswers).find(val => (normalizeString(val) === opt1) );
+  return !!found;
+}
 
   return (
     <>
