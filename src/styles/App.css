@@ -63,6 +63,9 @@ main {
 .dark.final-card {
   background-image: url("../assets/TarotCicada.png"); }
 
+.dark .Header {
+  background-color: #000504; }
+
 .dark .incorrect {
   background-color: #9E2D3A;
   border: 2px solid #72111C;
@@ -149,7 +152,7 @@ main {
   box-shadow: 0px 4px 0px #5A930E; }
 
 .light.mode-button {
-  background-color: #001514;
+  background-color: transparent;
   background-image: url("../assets/moon.svg"); }
 
 .light textarea {

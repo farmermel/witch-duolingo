@@ -78,6 +78,10 @@ main {
     background-image: url("../assets/TarotCicada.png");
   }
 
+  .Header {
+    background-color: #000504;
+  }
+
   .incorrect {
     background-color: #9E2D3A;
     border: 2px solid #72111C;
@@ -191,7 +195,7 @@ main {
   }
 
   &.mode-button {
-    background-color: #001514;
+    background-color: transparent;
     background-image: url("../assets/moon.svg");
   }
 
