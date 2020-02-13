@@ -60,14 +60,12 @@ export const Lesson = () => {
 
     if (cardTypes[randomNum] === "matching") {
       return (<MatchingCard prompt="Make pairs"
-        currentCard={currentCard}
         incrementCard={incrementCard}
         translationAnswers={translationAnswers}
       />);
     } else {
       return (<WriteAnswerCard prompt="Translate this sentence"
         currentEnglish={allEnglish[currentCard]}
-        currentCard={currentCard}
         incrementCard={incrementCard}
         translation={allTranslations[currentCard]}
         translationAnswers={translationAnswers}

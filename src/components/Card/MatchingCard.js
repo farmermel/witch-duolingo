@@ -4,7 +4,7 @@ import { ThemeContext } from "../../contexts/themeContext";
 
 export const MatchingCard = ({
   translationAnswers,
-  setCurrentCard
+  incrementCard
 }) => {
   const [userAnswer, setUserAnswer] = useState("");
   const [buttonState, setButtonState] = useState("disabled");
@@ -21,12 +21,6 @@ export const MatchingCard = ({
     setButtonTranslationState(untouchedOptions);
   }, [translationAnswers]);
 
-  //Right now, handling reset directly by calling it
-  //useEffect to have one that changes on userAnswer,
-  //have userAnswer be an array and have a sentinel condition 
-  //that returns when userAnswer is length one
-  //but handles setting correct and incorrect when userAnswer is length two?
-
   const waitAndResetCard = (isRight, newButtonTranslationState) => {
     const newClass = isRight ? "disabled" : "untouched";
     const resolvedState = Object.entries(newButtonTranslationState).map(val => {
@@ -35,17 +29,22 @@ export const MatchingCard = ({
       }
       return val;
     });
-    //still need to handle final correct answer (enable check button)
+
     setTimeout(() => {
       setButtonTranslationState(Object.fromEntries(resolvedState));
       setUserAnswer("");
+      checkAllCorrect(resolvedState);
     }, 1000);
   };
+
+  const checkAllCorrect = resolvedState => {
+    const stillUnanswered = resolvedState.find(([_, val]) => val !== "disabled");
+    !stillUnanswered && setButtonState("correct")
+  }
     
   const handleSubmit = error => {
     error.preventDefault();
-    setCurrentCard(currentCard + 1);
-    setButtonState("enabled");
+    incrementCard();
   };
 
   const hanldeFirstClick = value => {
@@ -79,12 +78,6 @@ export const MatchingCard = ({
     userAnswer === ""
       ? hanldeFirstClick(target.value)
       : handleSecondClick(target.value);
-    //check if answers is empty string
-    //if it isnt add target value to answer
-    //if it is, pass answer and target value to checking function
-    //then set states of buttons accordingly 
-    //(either reset buttons as unclicked)
-    //or flash green then disable
   };
 
 

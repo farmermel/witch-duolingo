@@ -1,10 +1,10 @@
+import 'core-js';
 import '@testing-library/jest-dom/extend-expect';
-import { fireEvent, screen, waitForDomChange, waitForElement } from '@testing-library/react';
-import { WriteAnswerCard } from '../components/Card/WriteAnswerCard';
+import { fireEvent, waitForElement } from '@testing-library/react';
 import React from 'react';
 import { renderWithWrappers } from '../test-utils';
-//for flat method
-import 'core-js';
+import { WriteAnswerCard } from '../components/Card/WriteAnswerCard';
+
 
 const fakeTranslationAnswers = {
   Hello: "Salve", 
@@ -19,10 +19,10 @@ let getByText, getByRole;
 beforeEach(async () => {
   ({ getByText, getByRole } = renderWithWrappers(
     <WriteAnswerCard translationAnswers={fakeTranslationAnswers}
-                     incrementCard={() => {}} 
-                     prompt="Type translation"
-                     translation={fakeTranslationAnswers["Hello"]}
-                     currentEnglish="Hello"
+      incrementCard={() => {}} 
+      prompt="Type translation"
+      translation={fakeTranslationAnswers["Hello"]}
+      currentEnglish="Hello"
     />));
 
   await waitForElement(
@@ -31,15 +31,15 @@ beforeEach(async () => {
 });
 
 test("Check button shows is correct when answer is correct", () => {
-    fireEvent.change(getByRole("textbox"), {target: {value: "salve"}})
-    fireEvent.click(getByText("Check"))
+  fireEvent.change(getByRole("textbox"), {target: {value: "salve"}});
+  fireEvent.click(getByText("Check"));
 
-    expect(getByText("Check")).toHaveClass("correct");
-})
+  expect(getByText("Check")).toHaveClass("correct");
+});
 
 test("Check button shows is incorrect when answer is wrong", () => {
-  fireEvent.change(getByRole("textbox"), {target: {value: "super wrong"}})
-  fireEvent.click(getByText("Check"))
+  fireEvent.change(getByRole("textbox"), {target: {value: "super wrong"}});
+  fireEvent.click(getByText("Check"));
 
   expect(getByText("Check")).toHaveClass("incorrect");
-})
+});
