@@ -21,8 +21,7 @@ export default [
         "Old ones",
         "Scented candle",
         "Fire",
-        "Earth",
-        "Water"
+        "Earth"
     ],
     [
         "The parents are sad",
@@ -46,9 +45,9 @@ export default [
         "Nice you meet you",
         "Excuse me",
         "My name is Ariadne",
-        "Curse you",
-        "My name is "
-    ],[
+        "Curse you"
+    ],
+    [
         "Hello",
         "Sun",
         "Stars",
@@ -58,8 +57,7 @@ export default [
         "Bat",
         "Excuse me",
         "Bird",
-        "Curse you",
-        "My name is "
+        "Curse you"
     ],
     [
         "This is my will",
@@ -71,8 +69,6 @@ export default [
         "Ice",
         "Rain",
         "Smoke",
-        "Fog",
-        "Night",
-        "Day"
+        "Fog"
     ],
 ]
