@@ -95,7 +95,7 @@ const isAnswerRight = (translationAnswers, opt1, opt2) => (
               <input key={`${word}${index}`}
                 onClick={handleOnClick}
                 type="button"
-                theme={word[0]}
+                value={word[0]}
                 className={`${word[1]} match-button`}/>
             ))}
           </section>
